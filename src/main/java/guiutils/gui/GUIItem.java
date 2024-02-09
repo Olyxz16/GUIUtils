@@ -1,6 +1,5 @@
 package guiutils.gui;
 
-import guiutils.nbt.NBTTagUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -104,25 +103,5 @@ public class GUIItem {
         return this;
     }
 
-
-    public GUIItem setNBTTagInt(String tag, int value)
-    {
-        this.itemStack = NBTTagUtils.setNBTTagInt(this.itemStack, tag, value);
-        return this;
-    }
-    public GUIItem setNBTTagString(String tag, String value)
-    {
-        this.itemStack = NBTTagUtils.setNBTTagString(this.itemStack, tag, value);
-        return this;
-    }
-
-    public int getNBTTagInt(String tag)
-    {
-        return NBTTagUtils.getNBTTagInt(this.itemStack, tag);
-    }
-    public String getNBTTagString(String tag)
-    {
-        return NBTTagUtils.getNBTTagString(this.itemStack, tag);
-    }
 
 }

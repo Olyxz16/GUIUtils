@@ -1,15 +1,14 @@
 package guiutils.gui;
 
-import guiutils.nbt.NBTTagUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.java.JavaPlugin;
+
+import guiutils.Main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +18,9 @@ public abstract class GUIBase implements Listener {
     protected Inventory inventory;
     protected Map<Integer, Runnable> eventMap;
 
-    public GUIBase(JavaPlugin plugin, int size, String name)
+    public GUIBase(int size, String name)
     {
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        Bukkit.getPluginManager().registerEvents(this, Main.plugin);
         this.inventory = Bukkit.createInventory(null, size, name);
         this.eventMap = new HashMap<>();
     }
