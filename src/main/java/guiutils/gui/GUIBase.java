@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
 import guiutils.Main;
@@ -23,7 +24,6 @@ public abstract class GUIBase implements Listener {
 
     public GUIBase(int size, String name)
     {
-        Bukkit.getPluginManager().registerEvents(this, Main.plugin);
         this.size = size;
         this.name = name;
         this.eventMap = new HashMap<>();
@@ -33,6 +33,7 @@ public abstract class GUIBase implements Listener {
 
     public void open(Player player) {
         this.inventory = Bukkit.createInventory(null, this.size, this.name);
+        Bukkit.getPluginManager().registerEvents(this, Main.plugin);
         build(player);
         player.openInventory(this.inventory);
     }
@@ -89,6 +90,7 @@ public abstract class GUIBase implements Listener {
     public void onClose(InventoryCloseEvent event) {
         if(event.getInventory() == this.inventory)
         {
+            InventoryOpenEvent.getHandlerList().unregister(this);
             InventoryClickEvent.getHandlerList().unregister(this);
             InventoryCloseEvent.getHandlerList().unregister(this);
         }
