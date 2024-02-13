@@ -18,16 +18,21 @@ public abstract class GUIBase implements Listener {
     protected Inventory inventory;
     protected Map<Integer, Runnable> eventMap;
 
+    private int size;
+    private String name;
+
     public GUIBase(int size, String name)
     {
         Bukkit.getPluginManager().registerEvents(this, Main.plugin);
-        this.inventory = Bukkit.createInventory(null, size, name);
+        this.size = size;
+        this.name = name;
         this.eventMap = new HashMap<>();
     }
 
     public abstract void build(Player player);
 
     public void open(Player player) {
+        this.inventory = Bukkit.createInventory(null, this.size, this.name);
         build(player);
         player.openInventory(this.inventory);
     }
